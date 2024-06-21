@@ -1,10 +1,10 @@
 package com.working.SpringBootNortwind.api.controllers;
 
 import com.working.SpringBootNortwind.business.abstracts.ProductService;
+import com.working.SpringBootNortwind.core.utilities.results.DataResult;
+import com.working.SpringBootNortwind.core.utilities.results.Result;
 import com.working.SpringBootNortwind.entities.concretes.Product;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -18,8 +18,15 @@ public class ProductsController {
         this.productService = productService;
     }
 
-    @GetMapping("/alldata")
-    public List<Product> getAll(){
-    return this.productService.getAll();
+    @GetMapping("/getall")
+    public DataResult<List<Product>> getAll()
+    {
+        return this.productService.getAll();
+    }
+
+    @PostMapping("/add")
+    public Result add(@RequestBody Product product)
+    {
+        return this.productService.add(product);
     }
 }
