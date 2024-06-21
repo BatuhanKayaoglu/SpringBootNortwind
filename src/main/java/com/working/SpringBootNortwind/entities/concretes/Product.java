@@ -16,9 +16,6 @@ public class Product {
     @Column(name = "product_id")
     private int id;
 
-    @Column(name = "category_id")
-    private int categoryId;
-
     @Column(name = "product_name")
     private String productName;
 
@@ -30,4 +27,8 @@ public class Product {
 
     @Column(name = "unit_price")
     private double unitPrice;
+
+    @ManyToOne()
+    @JoinColumn(name = "category_id")
+    private Category category;
 }
